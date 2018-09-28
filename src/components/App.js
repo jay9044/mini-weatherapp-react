@@ -15,6 +15,7 @@ class App extends React.Component {
               credits: "",
               portfolio: "",
               searchTerm:"London",
+              id: "",
               weather: ""
     }
 
@@ -43,11 +44,11 @@ class App extends React.Component {
 
   receiveImage(image){
     this.setState({
-    mainImage: image.urls.full,
+      mainImage: image.urls.full,
       credits: image.user.name,
-      portfolio: image.user.links.html
+      portfolio: image.user.links.html,
+      id: image.id
     })
-    console.log(image)
   }
 
 
@@ -73,7 +74,7 @@ receiveSearch(text){
         </figure>
 
         <Info  weather={this.state.weather} credits={this.state.credits} portfolio={this.state.portfolio}/>
-        <Thumbs imageArray={this.state.imageArray} receiver={this.receiveImage}/>
+        <Thumbs imageArray={this.state.imageArray} receiver={this.receiveImage} mainImgID={this.state.id}/>
         <Search  receiver={this.receiveSearch}/>
       </main>
     );
